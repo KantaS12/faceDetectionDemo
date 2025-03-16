@@ -16,13 +16,14 @@ trained_face_data = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 #cv2.imshow('Awesome Face Detector Photo', img)
 #cv2.waitKey() #It will pause until a key is pressed.
-
+if trained_face_data.empty():
+    print("Error: No cascade foudn")
+    exit()
 webcam = cv2.VideoCapture(0) #or video if you put "video.something"
 if not webcam.isOpened():
     print("Error: could not be opened")
     exit()
-print("Webcame is active. Press 'q' to quit.")
-key = cv2.waitKey(1)
+print("Webcam is active. Press 'q' to quit.")
 while True: 
     successful_frame_read, frame = webcam.read() #return true or false, and then the actual image
     if not successful_frame_read:
